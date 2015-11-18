@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  #map
+    script.
+      L.mapbox.accessToken = 'pk.eyJ1IjoiZXZhaG5pOCIsImEiOiJjaWZ6OHgwbG4wMmc1dG1tN3h4YnpxajlqIn0.ay9PDyLuYmcX1vIUE8QEwg';
+      var map = L.mapbox.map('map', 'evahni8.e7943601').setView([48.1567,17.1189], 14);
+
+  #menu
+    p#nadpis Prehliadač zdravotníckych zariadení
+    button(type='button', onclick='vratData("/pharmacy")') všetky lekárne
+    button(type='button', onclick='vratData("/hospitals")') všetky zariadenia
+    button(type='button', onclick='vratData("/allHealthCare")') všetko naraz
+    button(type='button', onclick='vratData("/pharmacyInHospital")') lekárne vo vnútri nemocníc
+    fieldset
+      legend Zobraziť najbližšie lekárne k zariadeniu
+      select#closePharmacy
+      .div
+        input#numberPharmacy(type='number', name='limit', min='0', max='100', value='5')
+        button.vriadku(type='button', onclick='nearPharmacy()') zobraz
+
+  #target
